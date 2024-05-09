@@ -54,13 +54,11 @@ spec:
           volumeMounts:
             - name: app-data
               mountPath: /app/log
-#      volumes: 
-#        - name: app-data
-#          hostPath: 
-#            path: /home/rke/stmp/rke-persistent-volumes/button-logger-app-pv/
-#            type: DirectoryOrCreate
-#            #subPath: button_press_log.txt
-#            #type: File
+      volumes: 
+        - name: app-data
+          hostPath: 
+            path: /home/rke/stmp/rke-persistent-volumes/button-logger-app-pv/
+            type: DirectoryOrCreate
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
