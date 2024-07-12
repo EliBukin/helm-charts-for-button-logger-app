@@ -18,5 +18,5 @@ spec:
   selector:
     app: button-logger-application
   externalTrafficPolicy: Local
-  loadBalancerIP: 192.168.66.102
+  loadBalancerIP: 192.168.67.100
   type: LoadBalancer
