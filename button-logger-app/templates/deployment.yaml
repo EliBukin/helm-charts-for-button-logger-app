@@ -45,6 +45,14 @@ spec:
             httpGet:
               path: /
               port: http
+          volumeMounts:
+            - name: app-data
+              mountPath: /app
+      volumes: 
+        - name: app-data
+          hostPath: 
+            path: /home/ecclesiastes/stmp/rke2-volumes/button-logger-app-pv/
+            type: DirectoryOrCreate
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
