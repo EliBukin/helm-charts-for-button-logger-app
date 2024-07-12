@@ -10,7 +10,6 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      app: button-logger-application
       {{- include "button-logger-app.selectorLabels" . | nindent 6 }}
   template:
     metadata:
@@ -19,13 +18,8 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        app: button-logger-application
         {{- include "button-logger-app.selectorLabels" . | nindent 8 }}
     spec:
-      volumes:
-        - name: app-data
-          persistentVolumeClaim:
-            claimName: button-logger-app-pv-claim
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
@@ -41,24 +35,16 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: {{ .Values.service.port }}
+              containerPort: {{ .Values.service.targetport }}
               protocol: TCP
-          #livenessProbe:
-          #  httpGet:
-          #    path: /
-          #    port: http
-          #readinessProbe:
-          #  httpGet:
-          #    path: /
-          #    port: http
-          volumeMounts:
-            - name: app-data
-              mountPath: /app
-      volumes: 
-        - name: app-data
-          hostPath: 
-            path: /home/rke/stmp/rke-persistent-volumes/button-logger-app-pv/
-            type: DirectoryOrCreate
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
