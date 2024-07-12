@@ -1,0 +1,1 @@
+helm install button-logger-app ./button-logger-app --set service.loadBalancerIP=203.0.113.1
