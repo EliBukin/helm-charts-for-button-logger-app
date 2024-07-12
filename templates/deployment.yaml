@@ -53,7 +53,7 @@ spec:
           #    port: http
           volumeMounts:
             - name: app-data
-              mountPath: /app/log
+              mountPath: /app
       volumes: 
         - name: app-data
           hostPath: 
