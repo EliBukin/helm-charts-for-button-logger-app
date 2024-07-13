@@ -37,22 +37,21 @@ spec:
             - name: http
               containerPort: {{ .Values.service.targetport }}
               protocol: TCP
-          #livenessProbe:
-          #  httpGet:
-          #    path: /
-          #    port: http
-          #readinessProbe:
-          #  httpGet:
-          #    path: /
-          #    port: http
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
           volumeMounts:
             - name: app-data
               mountPath: /app
       volumes: 
         - name: app-data
-          hostPath: 
-            path: /home/ecclesiastes/stmp/rke2-volumes/button-logger-app-pv/
-            type: DirectoryOrCreate
+          persistentVolumeClaim:
+            claimName: button-logger-app-pv-claim
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
