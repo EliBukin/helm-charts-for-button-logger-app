@@ -80,7 +80,7 @@ autoscaling:
 persistence:
   mountPath: /app/app-data  # Replace with the actual path where your app expects the storage
   existingClaim: button-logger-app-pv-claim
-  #persistentVolumePath: /home/ecclesiastes/stmp/rke2-volumes/button-logger-app-pv
+  persistentVolumePath: "" 
 
 nodeSelector: {}
 

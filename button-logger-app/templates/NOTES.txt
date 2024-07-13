@@ -1,1 +1,1 @@
-helm install button-logger-app ./button-logger-app --set service.loadBalancerIP=203.0.113.1
+helm install button-logger-app ./button-logger-app --set service.loadBalancerIP=192.168.67.102 --set persistence.persistentVolumePath=/home/ecclesiastes/stmp/rke2-volumes/button-logger-app-pv
