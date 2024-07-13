@@ -73,9 +73,13 @@ resources: {}
 autoscaling:
   enabled: false
   minReplicas: 1
-  maxReplicas: 100
+  maxReplicas: 3
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
+
+persistence:
+  mountPath: /app/app-data  # Replace with the actual path where your app expects the storage
+  existingClaim: button-logger-app-pv-claim
 
 nodeSelector: {}
 
