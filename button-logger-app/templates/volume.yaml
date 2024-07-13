@@ -22,7 +22,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/home/rke/stmp/rke-persistent-volumes/button-logger-app-pv/log"
+    path: {{ .Values.Persistence.persistentVolumePath }}
 
 ---
 apiVersion: v1
