@@ -9,7 +9,7 @@ volumeBindingMode: WaitForFirstConsumer
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: button-logger-app-pv
+  name: button-logger-app-pv-volume
   labels:
     type: local
 spec:
@@ -22,7 +22,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/home/ecclesiastes/stmp/rke2-volumes/button-logger-app-pv"
+    path: {{ .Values.persistence.persistentVolumePath }}
 
 ---
 apiVersion: v1
